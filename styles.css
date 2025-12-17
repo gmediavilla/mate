@@ -1,0 +1,264 @@
+:root{
+  --bg: #0b1220;
+  --panel: #111a2b;
+  --panel2: #0e1726;
+  --card: #151f33;
+  --card2:#121b2c;
+
+  --line: #24314a;
+  --line2:#2a3956;
+
+  --text:#eaf2ff;
+  --muted:#b8c6e6;
+
+  --ok:#34d399;
+  --bad:#fb7185;
+
+  --btn:#1a243a;
+  --btnHover:#23304d;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: var(--bg);
+}
+
+/* Layout general */
+.app{
+  width:min(1100px, 96vw);
+  margin:12px auto 14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Barra superior */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  background: var(--panel);
+  border:1px solid var(--line);
+}
+
+.title{
+  margin:0;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+
+.controls{ display:flex; gap:8px; }
+
+.btn{
+  border:1px solid var(--line2);
+  background: var(--btn);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn:hover{ background: var(--btnHover); }
+.btn:active{ transform: scale(0.99); }
+
+/* Grilla */
+.board{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+  padding:12px;
+  border-radius:16px;
+  background: var(--panel2);
+  border:1px solid var(--line);
+}
+
+/* Celda */
+.cell{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  min-height:104px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.bigNumber{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:.2px;
+  line-height:1;
+}
+
+/* + y × */
+.opPicker{
+  display:flex;
+  gap:8px;
+}
+
+.opBtn{
+  flex:1;
+  border:1px solid var(--line2);
+  background: var(--btn);
+  color:var(--text);
+  padding:7px 10px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+.opBtn:hover{ background: var(--btnHover); }
+.opBtn.selected{
+  background:#263455;
+  border-color:#334a77;
+}
+.opBtn:disabled{
+  opacity:0.55;
+  cursor:not-allowed;
+}
+
+/* Slots */
+.slots{
+  display:flex;
+  gap:8px;
+}
+
+.slot{
+  flex:1;
+  border:1px dashed #3a4c74;
+  background: #0f1726;
+  border-radius:12px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* Correcto / Incorrecto */
+.cell.ok{
+  border-color: rgba(52, 211, 153, 0.8);
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.18) inset;
+}
+.cell.bad{
+  border-color: rgba(251, 113, 133, 0.85);
+  box-shadow: 0 0 0 2px rgba(251, 113, 133, 0.18) inset;
+}
+
+/* Bloqueada (pareja resuelta) */
+.cell.locked{
+  opacity:0.92;
+}
+.cell.locked .slot{
+  cursor:not-allowed;
+  opacity:0.9;
+}
+
+/* Bandeja de números */
+.tray{
+  padding:12px;
+  border-radius:16px;
+  background: var(--panel2);
+  border:1px solid var(--line);
+}
+
+.trayTitle{
+  margin:0 0 8px;
+  font-size:13px;
+  color:var(--muted);
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+.trayRow{
+  display:grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap:8px;
+}
+
+.trayItem{
+  border:1px solid var(--line2);
+  background: var(--btn);
+  border-radius:12px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  user-select:none;
+  cursor:pointer;
+}
+
+.trayItem.selected{
+  outline: 2px solid #3b82f6;
+  background:#27365a;
+}
+
+.trayItem.used{
+  opacity:0.45;
+  cursor:not-allowed;
+}
+
+.trayInput{
+  width:100%;
+  height:100%;
+  background: transparent;
+  border:none;
+  outline:none;
+  text-align:center;
+  color:var(--text);
+  font-weight:900;
+  font-size:14px;
+}
+
+/* Modal GANASTE (profesional, sin emojis) */
+.winModal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.75);
+  z-index:999;
+}
+
+.winBox{
+  width:min(520px, 92vw);
+  padding:26px 18px 18px;
+  border-radius:16px;
+  background: #0f1726;
+  border:1px solid #2a3956;
+  text-align:center;
+}
+
+.winTitle{
+  font-size:36px;
+  font-weight:1000;
+  letter-spacing:2px;
+  margin:0 0 6px;
+}
+
+.winSubtitle{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+/* Responsive: entra cómodo en celu */
+@media (max-width: 860px){
+  .board{ grid-template-columns: repeat(2, 1fr); }
+  .trayRow{ grid-template-columns: repeat(8, 1fr); }
+  .bigNumber{ font-size:24px; }
+  .cell{ min-height:100px; }
+}

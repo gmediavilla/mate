@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guada prueba</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1 class="title">Guada prueba</h1>
+
+      <div class="controls">
+        <button class="btn" id="btnNuevo">Nuevo</button>
+        <button class="btn" id="btnComprobar">Comprobar</button>
+      </div>
+    </header>
+
+    <section class="board" id="board"></section>
+
+    <section class="tray">
+      <h2 class="trayTitle">Números</h2>
+      <div class="trayRow" id="trayRow"></div>
+    </section>
+  </main>
+
+  <!-- OVERLAY GANASTE -->
+  <div id="winModal" class="winModal" style="display:none;">
+    <div class="winBox">
+      <div class="winTitle">GANASTE</div>
+      <div class="winSubtitle">Partida completada</div>
+      <button class="btn btnPrimary" id="btnNuevoModal">Nuevo</button>
+    </div>
+  </div>
+</body>
+</html>
